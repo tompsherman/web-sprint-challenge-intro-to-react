@@ -3,6 +3,7 @@ import Character from "./components/Character"
 import axios from "axios"
 import styled from "styled-components"
 import './App.css';
+
  // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
@@ -12,6 +13,8 @@ import './App.css';
 const App = () => {
  
   const [characters, setCharacters]= useState([])
+ 
+
   const URL = "https://rickandmortyapi.com/api/character"
 
   useEffect (()=>{
@@ -20,13 +23,16 @@ const App = () => {
     .then((response)=>{
       console.log("character list:", response.data.results)
       setCharacters(response.data.results)
+      
     })
     .catch(err=> console.log("we got a big fucking problem Morty"))
   },[])
+
   return (
     <div className="App">
       <h1 className="Header">Rick & Morty Character Log</h1>
       <Character characters ={characters}/>
+      
     </div>
   );
 }

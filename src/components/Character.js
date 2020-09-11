@@ -1,5 +1,6 @@
 // Write your Character component here
 import React from "react";
+import SpeciesType from "./SpeciesType"
 import styled from "styled-components"
 
 const StyledDiv = styled.div`
@@ -14,7 +15,6 @@ const StyledDiv = styled.div`
     }
     .profile{
         display:flex;
-        justify-content: space-around;
     }
     img{
         margin: 3%;
@@ -24,6 +24,7 @@ const StyledDiv = styled.div`
         display:flex;
         flex-direction: column;
         justify-content: center;
+        margin:3%3%;
     }
 `
 
@@ -34,14 +35,12 @@ const Character = ({ characters }) => {
       {characters.map((item) => {
         return (
           <StyledDiv key={item.id}>
-            <div class ="name"><h2>{item.name}</h2></div>
-            <div class="profile">
+            <div className ="name"><h2>{item.name}</h2></div>
+            <div className="profile">
             <img src={item.image} alt={item.name} />
-            <div class="info">
+            <div className="info">
                 <h3>Status: {item.status}</h3>
-                <h3>
-                  Species: {item.species} ({item.type})
-                </h3>
+                 <SpeciesType species={item.species} speciesType={item.type}/>
                 <h3>Location: {item.location.name}</h3>
             </div>
             </div>
