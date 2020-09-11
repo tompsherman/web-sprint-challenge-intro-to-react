@@ -11,10 +11,21 @@ import './App.css';
   // sync up with, if any.
 const App = () => {
  
-  const [characters, setCharacters]= useState(["test"])
+  const [characters, setCharacters]= useState([])
+  const URL = "https://rickandmortyapi.com/api/character"
+
+  useEffect (()=>{
+    axios
+    .get(URL)
+    .then((response)=>{
+      console.log("character list:", response.data.results)
+      setCharacters(response.data.results)
+    })
+    .catch(err=> console.log("we got a big fucking problem Morty"))
+  },[])
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
+      <h1 className="Header">Rick & Morty Character Log</h1>
       <Character characters ={characters}/>
     </div>
   );
